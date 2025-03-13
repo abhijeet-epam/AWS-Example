@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+# Check if an argument (bucket name) is provided
+if [ -z "$1" ]; then
+    echo "A bucket name is required. Example: ./bucket my-bucket-ab"
+    exit 1
+fi
+
+Bucket_Name="$1"
+
+# Check if a filename is provided
+if [ -z "$2" ]; then
+    echo "A filename is required. Example: ./bucket my-bucket-ab file.txt"
+    exit 1
+fi
+
+Filename="$2"
+OBJ_KEY=$(basename "$Filename")
+
+# Upload file to S3
+aws s3api put-object \
+    --bucket "$Bucket_Name" \
+    --key "$OBJ_KEY" \
+    --body "$Filename"

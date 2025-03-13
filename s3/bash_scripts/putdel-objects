@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+echo "Deleting Objects..." 
+set -e
+
+if [ -z "$1" ]: then
+    echo "Bucket name shoud be entered"
+    exit 1
+fi
+Bucket_Name="$1"
+ 
+aws s3api delete-objetcs --bucket $Bucket_Name

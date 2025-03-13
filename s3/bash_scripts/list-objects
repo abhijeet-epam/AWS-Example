@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+echo "Object lists"
+set -e
+# Check if the bucket name is provided
+if [ -z "$1" ]; then
+    echo "A bucket name is required. Example: ./script.sh my-bucket-ab"
+    exit 1
+fi
+
+Bucket_Name="$1"
+
+# List objects in the specified S3 bucket
+aws s3api list-objects-v2 --bucket "$Bucket_Name"

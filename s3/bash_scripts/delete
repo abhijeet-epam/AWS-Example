@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+# Check if an argument (bucket name) is provided
+if [ -z "$1" ]; then
+    echo "A bucket name is required. Example: ./bucket my-bucket-ab"
+    exit 1
+fi
+
+BUCKET_NAME=$1
+echo "----"
+echo "aws s3api delete-bucket --bucket $BUCKET_NAME"
+
+aws s3api delete-bucket --bucket "$BUCKET_NAME"
+
+echo "--bucket delete--"
